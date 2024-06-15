@@ -11,7 +11,7 @@ solana_try_nft = "7WksMYV18Dcc65XPraZY6aQ3U7wVLAkMRsiC9TCJzLzr"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
