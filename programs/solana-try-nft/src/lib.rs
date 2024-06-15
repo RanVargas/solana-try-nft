@@ -1,7 +1,11 @@
 use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
-    token::{mint_to, Mint, MintTo, Token, TokenAccount},
+    token::Token,
+    token::MintTo,
+    token::Mint,
+    token::TokenAccount,
+    token::mint_to
 };
 
 declare_id!("7WksMYV18Dcc65XPraZY6aQ3U7wVLAkMRsiC9TCJzLzr");
