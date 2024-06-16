@@ -1,9 +1,10 @@
 use anchor_lang::prelude::*;
 use anchor_spl::{
+
     associated_token::AssociatedToken,
     metadata::{
         create_metadata_accounts_v3, CreateMetadataAccountsV3, create_master_edition_v3,
-        CreateMasterEditionV3, Metadata
+        CreateMasterEditionV3, Metadata, mpl_token_metadata::types::DataV2
     },
     token::Token,
     token::MintTo,
@@ -12,8 +13,8 @@ use anchor_spl::{
     token::mint_to,
 };
 
-use mpl_token_metadata::accounts::{Metadata as MetadataAccount};
-use mpl_token_metadata::types::DataV2;
+use mpl_token_metadata::accounts::{MasterEdition, Metadata as MetadataAccount};
+
 
 declare_id!("7WksMYV18Dcc65XPraZY6aQ3U7wVLAkMRsiC9TCJzLzr");
 
