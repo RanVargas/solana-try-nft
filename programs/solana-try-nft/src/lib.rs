@@ -12,6 +12,7 @@ use anchor_spl::{
     token::mint_to,
 };
 
+use mpl_token_metadata::accounts::{Metadata as MetadataAccount};
 use mpl_token_metadata::types::DataV2;
 
 declare_id!("7WksMYV18Dcc65XPraZY6aQ3U7wVLAkMRsiC9TCJzLzr");
@@ -20,28 +21,6 @@ pub const PREFIX: &str = "metadata";
 
 pub const EDITION: &str = "edition";
 
-fn find_metadata_account(mint: &Pubkey) -> (Pubkey, u8) {
-    Pubkey::find_program_address(
-        &[
-            PREFIX.as_bytes(),
-            mpl_token_metadata::ID.as_ref(),
-            mint.as_ref(),
-        ],
-        &mpl_token_metadata::ID,
-    )
-}
-
-pub fn find_master_edition_account(mint: &Pubkey) -> (Pubkey, u8) {
-    Pubkey::find_program_address(
-        &[
-            PREFIX.as_bytes(),
-            crate::ID.as_ref(),
-            mint.as_ref(),
-            EDITION.as_bytes(),
-        ],
-        &crate::ID,
-    )
-}
 
 #[program]
 pub mod solana_try_nft {
@@ -134,13 +113,13 @@ pub struct InitNFT<'info> {
     /// CHECK - address
     #[account(
         mut,
-        address=find_metadata_account(&mint.key()).0,
+        address=MetadataAccount::find_pda(&mint.key()).0,
     )]
     pub metadata_account: AccountInfo<'info>,
     /// CHECK: address
     #[account(
         mut,
-        address=find_master_edition_account(&mint.key()).0,
+        address=MetadataAccount::find_pda(&mint.key()).0,
     )]
     pub master_edition_account: AccountInfo<'info>,
 
